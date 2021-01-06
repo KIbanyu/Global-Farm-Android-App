@@ -29,10 +29,18 @@ public interface ApiInterface {
 
     @Multipart
     @POST("add-post")
-    Call<BaseResponse> addPost(@Part MultipartBody.Part file, @Query("name") String name,
-                               @Query("category") String category, @Query("price") BigDecimal price,
-                               @Query("quantity") String quantity, @Query("description") String description,
-                               @Query("location") String location, @Query("phone") String phone);
+    Call<BaseResponse> addPost(@Part MultipartBody.Part file,
+                               @Part MultipartBody.Part file1,
+                               @Part MultipartBody.Part file2,
+                               @Query("count") int count,
+                               @Query("name") String name,
+                               @Query("category") String category,
+                               @Query("price") BigDecimal price,
+                               @Query("quantity") String quantity,
+                               @Query("description") String description,
+                               @Query("location") String location,
+                               @Query("userId") long userId,
+                               @Query("phone") String phone);
 
     @GET("get-posts")
     Call<GetPostResponse> getPosts(@Query("type") String type);

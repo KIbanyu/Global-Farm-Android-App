@@ -16,6 +16,8 @@ public class Constants {
     public static final String PETS ="Pets";
     public static final String LIVE_STOCKS ="Livestock";
     public static final String AGROVETS ="Agrovet";
+    public static final String CAMERA = "camera";
+    public static final String GALLERY = "gallery";
 
 
 }

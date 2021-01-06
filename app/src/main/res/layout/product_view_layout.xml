@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,16 +12,9 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:id="@+id/item_view"
+        android:layout_margin="10dp"
         android:background="@color/white"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_favorite_black_24dp"
-            android:tint="@color/grey_400"
-            android:layout_height="wrap_content" />
 
 
         <ImageView
@@ -30,49 +25,69 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/farm_products"
             android:scaleType="centerCrop"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:layout_height="200dp"
             android:contentDescription="@string/app_name" />
         <TextView
             android:layout_width="match_parent"
-            android:layout_gravity="start"
             android:id="@+id/product_name"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center"
+            android:text="Cabbages"
             android:layout_marginTop="20dp"
             android:textColor="@color/colorPrimary"
-            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp" />
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_gravity="start"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:gravity="center"
             android:id="@+id/quantity"
-            android:layout_marginLeft="20dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp" />
-
-
-
-        <TextView
             android:layout_width="match_parent"
-            android:layout_gravity="start"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/product_price"
-            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp" />
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="1 acre"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_gravity="start"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                android:text="KSH 100"
+                android:id="@+id/product_price"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp" />
+
+
+            <Button
+                android:layout_width="70dp"
+                android:text="@string/call"
+                android:background="@drawable/corner_radius_5"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"
+                android:id="@+id/make_call"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:layout_height="30dp"
+                tools:ignore="UnusedAttribute" />
+
+        </RelativeLayout>
+
+
+
 
 
 

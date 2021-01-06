@@ -2,13 +2,14 @@ package com.kibzdev.globalfarm.models.requests;
 
 import com.kibzdev.globalfarm.models.Photos;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Created by Itotia Kibanyu on 8/3/2020.
  */
-public class PostDateRequest {
+public class PostDateRequest  implements Serializable {
     private String name;
     private String category;
     private BigDecimal price;
@@ -17,6 +18,15 @@ public class PostDateRequest {
     private String location;
     private String phone;
     private String photosList;
+    private String locationName;
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
 
     public String getName() {
         return name;

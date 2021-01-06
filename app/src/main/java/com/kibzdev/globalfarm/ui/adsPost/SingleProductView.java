@@ -2,11 +2,17 @@ package com.kibzdev.globalfarm.ui.adsPost;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.kibzdev.globalfarm.R;
 import com.kibzdev.globalfarm.adapters.SliderAdapter;
 import com.kibzdev.globalfarm.models.ProductModel;
@@ -17,6 +23,7 @@ public class SingleProductView extends AppCompatActivity {
     private LinearLayout slider_layout;
     private Context context;
     private SliderAdapter sliderAdapter;
+    private ProductModel productModel;
 
 
     @Override
@@ -27,14 +34,19 @@ public class SingleProductView extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
 
         context = SingleProductView.this;
-        ProductModel productModel = (ProductModel) getIntent().getSerializableExtra("data");
-
+        productModel = (ProductModel) getIntent().getSerializableExtra("data");
         getSupportActionBar().setTitle(productModel.getName());
 
         TextView itemName = findViewById(R.id.product_name);
         TextView price = findViewById(R.id.price);
         TextView quantity = findViewById(R.id.quantity);
         TextView description = findViewById(R.id.description);
+        TextView name = findViewById(R.id.name);
+        name.setText(productModel.getName());
+
+        Button make_call = findViewById(R.id.make_call);
+
+        make_call.setOnClickListener(view -> makeCall());
 
         ViewPager viewPager = findViewById(R.id.view_pager);
 
@@ -44,8 +56,6 @@ public class SingleProductView extends AppCompatActivity {
         addDotsIndicator(0);
         viewPager.addOnPageChangeListener(viewListener);
 
-
-        itemName.setText(productModel.getName());
         price.setText(String.format("KES %s", productModel.getPrice().intValue()));
         quantity.setText(productModel.getProduct_quantity());
         description.setText(productModel.getDescription());
@@ -98,4 +108,14 @@ public class SingleProductView extends AppCompatActivity {
             // Do something
         }
     };
+
+    public void makeCall() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + "0723995657"));
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+
 }

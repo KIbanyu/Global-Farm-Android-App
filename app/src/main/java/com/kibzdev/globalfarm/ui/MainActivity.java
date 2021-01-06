@@ -10,6 +10,7 @@ import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -62,16 +63,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
         context = MainActivity.this;
 
         userPreference = context.getSharedPreferences(Constants.USER_PREFERENCE, MODE_PRIVATE);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
+        ImageView home_btn = findViewById(R.id.home);
+        ImageView more_btn = findViewById(R.id.more);
+        ImageView add = findViewById(R.id.settings);
+        ImageView profile = findViewById(R.id.profile);
+
+        add.setOnClickListener(view -> startActivity(new Intent(context, CreatePostActivity.class)));
+
+        profile.setOnClickListener(view -> startActivity(new Intent(context, ProfileActivity.class)));
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -99,8 +110,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         name.setText(userPreference.getString(Constants.NAME, null));
 
         RelativeLayout farm_products = findViewById(R.id.farm_products);
+        RelativeLayout live_Stock = findViewById(R.id.live_stock);
+        RelativeLayout agrovets = findViewById(R.id.agrovet);
+        RelativeLayout pets = findViewById(R.id.pet);
 
         farm_products.setOnClickListener(v ->startTabActivity(0));
+        live_Stock.setOnClickListener(v ->startTabActivity(1));
+        agrovets.setOnClickListener(v ->startTabActivity(2));
+        pets.setOnClickListener(v ->startTabActivity(3));
 
 
         getDealsProducts();
@@ -142,9 +159,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(context, CreatePostActivity.class));
                 break;
         }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+//
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

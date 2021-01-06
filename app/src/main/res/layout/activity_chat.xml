@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/constraint_layout"
+    android:layout_height="match_parent"
+    tools:context=".ui.adsPost.ChatActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ImageView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextAppearance="@style/Toolbar.TitleText">
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/color_fade_main_bg"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/swipeContainer"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:divider="@android:color/transparent"
+                            android:stackFromBottom="true"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical" />
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/curved_gray_bg"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="@color/white"
+                        android:transcriptMode="alwaysScroll"
+                        android:stackFromBottom="true"
+                        android:layout_weight="0"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:padding="7dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="3.7"
+                            android:orientation="horizontal"
+                            android:backgroundTint="#f5f5f5"
+                            android:background="@drawable/curved_gray_bg"
+                            android:layout_height="wrap_content">
+                            <EditText android:id="@+id/message"
+                                android:layout_width="match_parent"
+                                android:hint="Enter message"
+                                android:paddingTop="9dp"
+                                android:paddingBottom="9dp"
+                                android:layout_weight=".5"
+                                android:maxLines="4"
+                                android:maxLength="2000"
+                                android:elevation="5dp"
+                                android:inputType="textCapSentences|textMultiLine"
+                                android:background="@null"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="14dp"
+                                android:layout_height="wrap_content" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_weight="2"
+                                android:layout_gravity="center"
+                                android:id="@+id/layoutImojis"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_happy_1"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="wrap_content" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:src="@drawable/ic_camera"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_weight=".5"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView android:id="@+id/btn_send"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right"
+                                android:src="@drawable/ic_send"
+                                app:tint="#00d3c4" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,4 +41,14 @@
     <string name="location">Location</string>
     <string name="select_category">Select category</string>
     <string name="select_ad_category">Select ad category</string>
+    <string name="sample_text">Sample Text</string>
+    <string name="upload">Upload</string>
+    <string name="first">First</string>
+    <string name="photo">Photo</string>
+
+    <string name="from_gallery">Gallery</string>
+    <string name="from_camera">Camera</string>
+    <string name="pick_photo_from">Pick Photo From</string>
+    <string name="next">Next</string>
+    <string name="call">Call</string>
 </resources>

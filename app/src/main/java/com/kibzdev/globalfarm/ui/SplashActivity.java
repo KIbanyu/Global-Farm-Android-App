@@ -27,14 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         userPreference = getApplicationContext().getSharedPreferences(Constants.USER_PREFERENCE, MODE_PRIVATE);
 
-
-
-        ImageView myImageView = (ImageView) findViewById(R.id.image_icon);
-        TextView title = (TextView) findViewById(R.id.title);
-        Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        myImageView.startAnimation(myFadeInAnimation); //Set animation to your ImageView
-        title.startAnimation(myFadeInAnimation);
-
+        
         final Timer RunSplash = new Timer();
         TimerTask ShowSplash = new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.M)

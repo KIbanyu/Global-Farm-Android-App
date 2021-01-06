@@ -3,6 +3,7 @@ package com.kibzdev.globalfarm.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kibzdev.globalfarm.BuildConfig;
 import com.kibzdev.globalfarm.utils.AppUtils;
 
 
@@ -119,7 +120,7 @@ public class RestAdapter {
         OkHttpClient okHttpClient = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AppUtils.ip)
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();

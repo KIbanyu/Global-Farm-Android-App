@@ -1,6 +1,7 @@
 package com.kibzdev.globalfarm.rest;
 
 
+import com.kibzdev.globalfarm.BuildConfig;
 import com.kibzdev.globalfarm.utils.AppUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -12,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = AppUtils.ip;
+    public static final String BASE_URL = BuildConfig.BASE_URL;
     private static Retrofit retrofit = null;
     private static Retrofit retrofit2 = null;
 

@@ -12,12 +12,15 @@
     <color name="bg_color">#f8f8f9</color>
     <color name="transparentColor">#00000000</color>
     <color name="text_color_dark_grey">#737674</color>
+    <color name="color_fade_main_bg">#EBF8F5</color>
 
     <!-- Grey -->
     <color name="grey_400">#bdbdbd</color>
     <color name="input_login">#222222</color>
     <color name="profit">#35c635</color>
+    <color name="customGrey2">#fcc7c6c6</color>
 
     <color name="expenses">#cc2c00</color>
     <color name="countyRed">#f45342</color>
+    <color name="yellow">#ffff00</color>
 </resources>

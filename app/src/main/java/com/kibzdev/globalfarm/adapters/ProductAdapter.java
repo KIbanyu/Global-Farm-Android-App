@@ -2,6 +2,7 @@ package com.kibzdev.globalfarm.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductListingView> {
         holder.product_name.setText(products.get(position).getName());
         holder.product_quantity.setText(products.get(position).getProduct_quantity());
         holder.product_price.setText(String.format("KES %s", products.get(position).getPrice().intValue()));
+        holder.make_call.setOnClickListener(view -> makeCall());
 
         Picasso.get().load(products.get(position).getImagePosts()[0])
                 .placeholder(R.drawable.empty_grlobal)
@@ -67,5 +69,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductListingView> {
     @Override
     public int getItemCount() {
         return products.size();
+    }
+
+    public void makeCall() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + "0723995657"));
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent);
+        }
     }
 }
