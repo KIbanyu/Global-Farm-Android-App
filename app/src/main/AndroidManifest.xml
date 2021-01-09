@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.adsPost.ChatActivity"></activity>
+        <activity android:name=".ui.user.ChoseCountryActivity"></activity>
+        <activity android:name=".ui.adsPost.ChatActivity" />
         <activity android:name=".ui.adsPost.AttachPhotosActivity" />
         <activity android:name=".ui.adsPost.CreatePostActivity" />
         <activity android:name=".ui.adsPost.SingleProductView" />

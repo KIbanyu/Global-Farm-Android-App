@@ -23,4 +23,5 @@
     <color name="expenses">#cc2c00</color>
     <color name="countyRed">#f45342</color>
     <color name="yellow">#ffff00</color>
+    <color name="grey_text">#8f8f93</color>
 </resources>

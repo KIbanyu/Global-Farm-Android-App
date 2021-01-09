@@ -2,36 +2,48 @@ package com.kibzdev.globalfarm.ui.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kibzdev.globalfarm.R;
+import com.kibzdev.globalfarm.adapters.CountriesListAdapter;
 import com.kibzdev.globalfarm.models.requests.RegisterRequest;
 import com.kibzdev.globalfarm.models.response.BaseResponse;
 import com.kibzdev.globalfarm.models.response.rest.ApiInterface;
 import com.kibzdev.globalfarm.models.response.rest.RestAdapter;
 import com.kibzdev.globalfarm.utils.AppUtils;
 import com.kibzdev.globalfarm.utils.TransparentProgressDialog;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private Context context;
     private EditText first_name;
     private EditText phone_number;
     private EditText password;
     private EditText email;
+    private EditText country;
+    private String countryCode;
     private TransparentProgressDialog transparentProgressDialog;
 
+    private CountriesListAdapter adapter;
+    private Spinner spinner;
+    private String[] recourseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +54,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         first_name = findViewById(R.id.first_name);
         phone_number = findViewById(R.id.phone_number);
         password = findViewById(R.id.password);
+        country = findViewById(R.id.country);
         TextView back_to_login = findViewById(R.id.back_to_login);
         email = findViewById(R.id.email);
         back_to_login.setOnClickListener(this);
         Button reg_btn = findViewById(R.id.reg_btn);
         reg_btn.setOnClickListener(this);
-        transparentProgressDialog = new TransparentProgressDialog(RegisterActivity.this, "", R.drawable.ic_processing);
 
+        transparentProgressDialog = new TransparentProgressDialog(RegisterActivity.this, "", R.drawable.ic_processing);
+        spinner = findViewById(R.id.countrySelector);
+        spinner.setOnItemSelectedListener(this);
+        recourseList = this.getResources().getStringArray(R.array.CountryCodes);
+
+        country.setOnClickListener(view -> {
+            CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+            picker.setListener((name, code, symbol, flagDrawableResID) -> {
+                // Implement your code here
+            });
+            picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+        });
+
+        country.setOnClickListener(v -> startActivityForResult(new Intent(context, ChoseCountryActivity.class), 250));
+        setupSpinner();
     }
 
     @Override
@@ -96,6 +123,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        if (TextUtils.isEmpty(countryCode))
+        {
+            country.setError("Select country");
+            country.requestFocus();
+            return;
+        }
+
         if (TextUtils.isEmpty(Password)) {
             password.setError(context.getResources().getString(R.string.password_required));
             password.requestFocus();
@@ -114,6 +148,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         request.setEmail(Email);
         request.setPhoneNumber(phoneNumber);
         request.setPassword(Password);
+        request.setCountryCode(countryCode);
 
 
         ApiInterface apiInterface = RestAdapter.createAPI();
@@ -152,4 +187,62 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        if (i != -1) {
+            spinner.setSelection(i);
+
+            String[] country = recourseList[i].split(",");
+
+            Log.e("TAG", "Selected country is: " + adapter.getCountryDisplayName(country[1]));
+
+
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    private void setupSpinner() {
+
+        adapter = new CountriesListAdapter(this, recourseList);
+        spinner.setAdapter(adapter);
+
+        int selectedCountry = adapter.getPositionForDeviceCountry();
+
+        if (selectedCountry != -1) {
+            spinner.setSelection(selectedCountry);
+
+            String[] country = recourseList[selectedCountry].split(",");
+
+            Log.e("TAG", "Selected country is: " + adapter.getCountryDisplayName(country[1]));
+
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_CANCELED) {
+            //Write your code if there's no result
+
+            Toast.makeText(context, "Cancelled", Toast.LENGTH_LONG).show();
+
+        } else if (resultCode == 250) {
+
+            if (data.getExtras() != null) {
+                country.setText(data.getExtras().getString("country"));
+                countryCode = data.getExtras().getString("countryCode");
+            }
+
+        }
+    }
+
 }

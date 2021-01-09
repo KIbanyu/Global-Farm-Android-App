@@ -25,6 +25,7 @@ import com.kibzdev.globalfarm.ui.adsPost.AdsPostPageViewer;
 import com.kibzdev.globalfarm.ui.adsPost.CreatePostActivity;
 import com.kibzdev.globalfarm.ui.user.ProfileActivity;
 import com.kibzdev.globalfarm.utils.Constants;
+import com.kibzdev.globalfarm.utils.SpacesItemDecoration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -36,6 +37,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,12 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences userPreference;
     private ArrayList<ProductModel> dealsProduct = new ArrayList<>();
     private ArrayList<ProductModel> topProducts = new ArrayList<>();
-    private RecyclerView dealsRecyclerView;
     private RecyclerView topProductRecyclerView;
-    private LinearLayoutManager dealsLinearLayout;
-    private LinearLayoutManager topProductLayout;
     private TopProductsAdapter topProductsAdapter;
-    private DealsProductAdapter dealsProductAdapter;
 
 
     @Override
@@ -92,21 +90,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView name = hView.findViewById(R.id.name);
         Menu nav_Menu = navigationView.getMenu();
 
-        dealsRecyclerView = findViewById(R.id.deals_recycler_view);
         topProductRecyclerView = findViewById(R.id.top_products_recycler_view);
+        GridLayoutManager mGrid = new GridLayoutManager(context, 3);
 
-
+        topProductRecyclerView.setLayoutManager(mGrid);
+        topProductRecyclerView.setHasFixedSize(true);
         topProductsAdapter = new TopProductsAdapter(topProducts, this);
-        topProductLayout = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        topProductRecyclerView.setLayoutManager(topProductLayout);
+        topProductRecyclerView.addItemDecoration(new SpacesItemDecoration(3, 12, false));
+
         topProductRecyclerView.setAdapter(topProductsAdapter);
-
-
-        dealsProductAdapter = new DealsProductAdapter(dealsProduct, this);
-        dealsLinearLayout = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        dealsRecyclerView.setLayoutManager(dealsLinearLayout);
-        dealsRecyclerView.setAdapter(dealsProductAdapter);
-
         name.setText(userPreference.getString(Constants.NAME, null));
 
         RelativeLayout farm_products = findViewById(R.id.farm_products);

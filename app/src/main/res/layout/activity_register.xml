@@ -129,6 +129,40 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:hintTextColor="@color/black">
+
+                    <EditText
+                        android:id="@+id/country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:hint="@string/select_country"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:focusable="false"
+                        android:maxLength="30"
+                        android:textColor="@color/black"
+                        app:hintTextColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Spinner
+                    android:id="@+id/countrySelector"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp"
+                    android:prompt="@string/country_selection_prompt"
+                    android:layout_weight="0.3"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:layout_height="wrap_content"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
